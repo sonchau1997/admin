@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Dashboard from "Pages/Dashboard";
-import Login from "Pages/Login";
+
+import UserManagament from "Pages/UserManagament";
 
 
 
@@ -11,7 +12,7 @@ const App = () => {
     <Routes>
       <Route path="/" element={<Dashboard />}></Route>
 
-      <Route path="/Login" element={<Login />}></Route>
+      <Route path="/user" element={<UserManagament />}></Route>
 
     </Routes>
 
