@@ -1,13 +1,12 @@
 import { Space, Table, Tag, Button, Modal, Form, Input } from 'antd';
 import PrimaryLayout from 'Componets/Layout';
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 const columns = [
     {
         title: 'Name',
         dataIndex: 'name',
         key: 'name',
-        render: (text) => <a>{text}</a>,
+        render: (text) => <a href='/user'>{text}</a>,
     },
     {
         title: 'Age',
@@ -73,31 +72,37 @@ const data = [
         tags: ['cool', 'teacher'],
     },
 ];
-const SubmitButton = ({ form }) => {
-    const [submittable, setSubmittable] = React.useState(false);
 
-    // Watch all values
-    const values = Form.useWatch([], form);
-    React.useEffect(() => {
-        form
-            .validateFields({
-                validateOnly: true,
-            })
-            .then(
-                () => {
-                    setSubmittable(true);
-                },
-                () => {
-                    setSubmittable(false);
-                },
-            );
-    }, [values]);
+
+const SubmitButton = () => {
+    //     const [submittable, setSubmittable] = useState(false);
+
+    //     // Watch all values
+    //     const values = Form.useWatch([], form);
+    //     useEffect(() => {
+    //         form.validateFields({
+    //                 validateOnly: true,
+    //             })
+    //             .then(
+    //                 () => {
+    //                     setSubmittable(true);
+    //                 },
+    //                 () => {
+    //                     setSubmittable(false);
+    //                 },
+    //             );
+    //     }, [values]);
+
+
     return (
-        <Button type="primary" htmlType="submit" disabled={!submittable}>
+        <Button type="primary" htmlType="submit" >
+
             Add
         </Button>
     );
 };
+
+
 
 
 
@@ -115,15 +120,37 @@ const UserManagament = () => {
     };
     const [form] = Form.useForm();
 
+    const [users, SetUsers] = useState(data);
+
+    const onFinish = (user) => {
+        const newUser = {
+            key: Math.floor(Math.random() * 10000) + 1,
+            name: user.name,
+            age: user.age,
+            address: user.address,
+            tags: ['nice', 'developer'],
+        };
+        SetUsers([...users, newUser]);
+
+    }
+
+
+
+
 
     return (
+
         <PrimaryLayout title={"UserList"}>
+
 
             <Button type="primary" onClick={showModal}>
                 Add User
             </Button>
-            <Modal footer={null} title="Add user" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-                <Form form={form} name="validateOnly" layout="vertical" autoComplete="off">
+            <Modal footer={null} title="Add user" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}  >
+                <Form form={form} name="validateOnly" layout="vertical" autoComplete="off" onFinish={onFinish} >
+
+
+
                     <Form.Item
                         name="name"
                         label="Name"
@@ -146,6 +173,17 @@ const UserManagament = () => {
                     >
                         <Input />
                     </Form.Item>
+                    <Form.Item
+                        name="address"
+                        label="Address"
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
+                    >
+                        <Input />
+                    </Form.Item>
                     <Form.Item>
                         <Space>
                             <SubmitButton form={form} />
@@ -155,7 +193,9 @@ const UserManagament = () => {
                 </Form>
             </Modal>
 
-            <Table columns={columns} dataSource={data} />
+            <Table columns={columns} dataSource={users} />
+            {/* {console.log(users)}; */}
+
         </PrimaryLayout>
 
 
