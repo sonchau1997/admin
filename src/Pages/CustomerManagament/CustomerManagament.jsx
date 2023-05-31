@@ -1,4 +1,3 @@
-import PrimaryLayout from "Componets/Layout";
 import { Avatar, List } from 'antd';
 import {  useSelector } from 'react-redux'
 const CustomerManagament=()=>{
@@ -6,7 +5,7 @@ const CustomerManagament=()=>{
   const customersStore = useSelector((state) => state.customers);
     return(
       
-        <PrimaryLayout title="Customer">
+     
              <List
     itemLayout="horizontal"
     dataSource={customersStore.listCustomer}
@@ -23,7 +22,7 @@ const CustomerManagament=()=>{
   />
       
 
-        </PrimaryLayout>
+       
 
     )
  

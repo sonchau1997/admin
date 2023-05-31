@@ -1,5 +1,6 @@
-import { PieChartOutlined, UserOutlined,DesktopOutlined,ShoppingCartOutlined,GiftOutlined} from '@ant-design/icons';
+import { PieChartOutlined, UserOutlined,DesktopOutlined,ShoppingCartOutlined,GiftOutlined,UserSwitchOutlined} from '@ant-design/icons';
 import {  Layout, Menu, theme } from 'antd';
+import { NavLink, Outlet } from "react-router-dom";
 import { useState } from 'react';
 import {Helmet} from "react-helmet";
 const { Header, Content, Footer, Sider } = Layout;
@@ -12,11 +13,12 @@ function getItem(label, key, icon, children) {
   };
 }
 const items = [
-  getItem('Dashboard ', '1', <PieChartOutlined />),
-  getItem('Product', '2', <DesktopOutlined />),
-  getItem('User', '3', <UserOutlined />),
-  getItem('Order', '4', <ShoppingCartOutlined />,),
-  getItem('Coupon', '5', <GiftOutlined />,),
+  getItem('Dashboard ', '1',<NavLink to="/"> <PieChartOutlined /></NavLink>),
+  getItem('Product', '2', <NavLink to="/product"><DesktopOutlined /></NavLink>),
+  getItem('User', '3', <NavLink to="/user"><UserSwitchOutlined /></NavLink>),
+  getItem('Customer', '4', <NavLink to="/customer"><UserOutlined/></NavLink>),
+  getItem('Order', '5', <NavLink to="/other"><ShoppingCartOutlined /></NavLink>),
+  getItem('Coupon', '6',<NavLink to="/coupon"><GiftOutlined /></NavLink> )
 ];
 const PrimaryLayout = ({children,title}) => {
   const [collapsed, setCollapsed] = useState(false);
@@ -39,12 +41,14 @@ const PrimaryLayout = ({children,title}) => {
         <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
       </Sider>
       <Layout>
+    
         <Header
           style={{
             padding: 0,
             background: colorBgContainer,
           }}
         />
+          <Outlet/>
         <Content
           style={{
             margin: '0 16px',
@@ -64,6 +68,7 @@ const PrimaryLayout = ({children,title}) => {
          
           
         </Content>
+       
         <Footer
           style={{
             textAlign: 'center',
@@ -72,6 +77,7 @@ const PrimaryLayout = ({children,title}) => {
           Ant Design ©2023 Created by Ant UED
         </Footer>
       </Layout>
+     
     </Layout>
       
     </>
