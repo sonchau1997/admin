@@ -2,6 +2,7 @@ import { Space, Table, Tag, Button, Modal, Form, Input } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import PrimaryLayout from 'Componets/Layout';
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
 const UserManagament = () => {
     const columns = [
         {
@@ -59,30 +60,8 @@ const UserManagament = () => {
             ),
         },
     ];
-    const data = [
-        {
-            key: '1',
-            name: 'John Brown',
-            age: 32,
-            address: 'New York No. 1 Lake Park',
-            tags: ['nice', 'developer'],
-        },
-        {
-            key: '2',
-            name: 'Jim Green',
-            age: 42,
-            address: 'London No. 1 Lake Park',
-            tags: ['loser'],
-        },
-        {
-            key: '3',
-            name: 'Joe Black',
-            age: 32,
-            address: 'Sydney No. 1 Lake Park',
-            tags: ['cool', 'teacher'],
-        },
-    ];
-    const [users, setUsers] = useState(data);
+    const usersStore = useSelector((state) => state.users);
+    const dispatch = useDispatch();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
     const [editingUser, setEditingUser] = useState(null);
@@ -97,26 +76,30 @@ const UserManagament = () => {
     };
     const [form] = Form.useForm();
     const onFinish = (user) => {
-        const newUser = {
-            key: Math.floor(Math.random() * 10000) + 1,
+        const newUser =[...usersStore.listUser, {
+            key: Math.floor(Math.random() * 100) + 1,
             name: user.name,
             age: user.age,
             address: user.address,
             tags: ['nice', 'developer'],
-        };
-        setUsers([...users, newUser]);
+        }];
+        dispatch.users.setListUser(newUser);
+       
     }
     const onDeleteUser = (record) => {
         Modal.confirm({
             title: "Are you sure you want to delete this user record?",
             okText: "Yes",
             okType: "danger",
-            onOk: () => {
-                setUsers((prevUser) => {
-                    return prevUser.filter((user) => user.key !== record.key);
-                });
+            onOk:()=> {
+                const deleteUser=usersStore.listUser.filter(
+                    (user)=>user.key!==record.key
+                );
+                dispatch.users.setListUser(deleteUser)
+              
             },
         });
+    
     };
     const onEditUser = (record) => {
         setIsEditing(true);
@@ -178,24 +161,26 @@ const UserManagament = () => {
                 </Form>
             </Modal>
 
-            <Table columns={columns} dataSource={users} />
+            <Table columns={columns} dataSource={usersStore.listUser} />
             <Modal
                 title="Edit User"
                 open={isEditing}
                 okText="Save"
                 onCancel={resetEditing}
                 onOk={() => {
-                    setUsers((prevUser) =>
-                        prevUser.map((user) => {
-                            if (user.key === editingUser.key) {
+                    const updateUser=usersStore.listUser.map(
+                        (user)=>{
+                            if(user.key===editingUser.key){
                                 return editingUser;
-                            } else {
+                            }else{
                                 return user;
                             }
-                        })
+                        }
                     );
+                    dispatch.users.setListUser(updateUser)
                     resetEditing();
                 }}
+
             >
                 <Input
                     value={editingUser?.name}
@@ -226,8 +211,7 @@ const UserManagament = () => {
 
 
 
-
-            {console.log(users)};
+            {console.log(usersStore.listUser)};
 
 
 
