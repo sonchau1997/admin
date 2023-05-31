@@ -1,15 +1,7 @@
-import PrimaryLayout from "Componets/Layout";
 
-
-
-const Dashboard=()=>{
-    return(
-        <PrimaryLayout title={"DashBoard"} >
-            <div>DashBoard</div>
-
-        </PrimaryLayout>
-
- 
+const Dashboard = () => {
+    return (
+        <div>DashBoard</div>
     )
 }
 export default Dashboard;
