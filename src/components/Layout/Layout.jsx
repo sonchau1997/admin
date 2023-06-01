@@ -48,7 +48,6 @@ const PrimaryLayout = ({children,title}) => {
             background: colorBgContainer,
           }}
         />
-          <Outlet/>
         <Content
           style={{
             margin: '0 16px',
@@ -63,6 +62,7 @@ const PrimaryLayout = ({children,title}) => {
             }}
           >
              {children}
+             <Outlet/>
            
           </div>
          
