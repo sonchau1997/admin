@@ -1,7 +1,12 @@
+import ChartLine from "Componets/Chart";
+
 
 const Dashboard = () => {
     return (
-        <div>DashBoard</div>
+     
+      <ChartLine></ChartLine>
+        
     )
+
 }
 export default Dashboard;
