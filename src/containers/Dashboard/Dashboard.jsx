@@ -1,4 +1,4 @@
-import { ChartLine, ChartRadianBar } from "Componets/Chart";
+import { ChartLine, ChartRadianBar } from "components/Chart";
 
 
 const Dashboard = () => {

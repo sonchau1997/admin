@@ -2,7 +2,7 @@ import { Space, Table, Tag, Button, Modal, Form, Input } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import PrimaryLayout from 'Componets/Layout';
+import PrimaryLayout from 'components/Layout';
 const UserManagament = () => {
     <PrimaryLayout></PrimaryLayout>
     const columns = [

@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router-dom";
-import Dashboard from "Pages/Dashboard";
-import PrimaryLayout from "Componets/Layout";
-import UserManagament from "Pages/UserManagament";
-import CustomerManagament from "Pages/CustomerManagament";
+import Dashboard from "containers/Dashboard";
+import PrimaryLayout from "components/Layout";
+import UserManagament from "containers/UserManagament";
+import CustomerManagament from "containers/CustomerManagament";
 const App = () => {
   return (
 
