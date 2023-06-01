@@ -1,11 +1,16 @@
-import ChartLine from "Componets/Chart";
+import { ChartLine, ChartRadianBar } from "Componets/Chart";
 
 
 const Dashboard = () => {
     return (
-     
-      <ChartLine></ChartLine>
-        
+        <div>
+            <ChartLine></ChartLine>
+            <ChartRadianBar></ChartRadianBar>
+        </div>
+
+
+
+
     )
 
 }
