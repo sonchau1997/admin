@@ -3,6 +3,7 @@ import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import PrimaryLayout from 'components/Layout';
+import Excel from 'components/Excel';
 const UserManagament = () => {
     <PrimaryLayout></PrimaryLayout>
     const columns = [
@@ -116,6 +117,50 @@ const UserManagament = () => {
        <Button type="primary" onClick={showModal} >
                 Add User
             </Button>
+            <Excel
+          fileName="export-user"
+          data={[
+            {
+              columns: [
+                {
+                  title: "User Id",
+                  dataIndex: "key",
+                  width: 5,
+                },
+                {
+                  title: "Name",
+                  dataIndex: "name",
+                  width: 20,
+                },
+                {
+                  title: "Age",
+                  dataIndex: "age",
+                  width: 5,
+                },
+              ],
+              data: usersStore.listUser,
+              tabName: "info",
+            }
+            // {
+            //   columns: [
+            //     {
+            //       title: "Name",
+            //       dataIndex: "username",
+            //       width: 30,
+            //     },
+            //     {
+            //       title: "Phone",
+            //       dataIndex: "phone",
+            //       width: 30,
+            //     },
+            //   ],
+            //   data: usersStore.listUser,
+            //   tabName: "contact",
+            // },
+          ]}
+        >
+          <Button>Export users</Button>
+        </Excel>
             <Modal footer={null} title="Add user" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}  >
                 <Form form={form} name="validateOnly" layout="vertical" autoComplete="off" onFinish={onFinish}  >
                     <Form.Item
