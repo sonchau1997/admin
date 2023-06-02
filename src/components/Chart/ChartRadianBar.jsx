@@ -47,7 +47,7 @@ const CustomizedLegend = (value, entry) => {
         <>
             <div>
                 <span style={{ color: '#5f5F76', marginLeft: '10px', marginRight: '30px' }}>{entry.payload.name}</span>
-                <span style={{ color: '#0F0F3F', fontWeight: 700 }}>${entry.payload.uv.toFixed(2)}</span>
+                <span style={{ color: '#0F0F3F', fontWeight: 700 }}>${entry.payload.pv.toFixed(2)}</span>
             </div>
         </>
     );
@@ -67,7 +67,6 @@ const ChartRadianBar = () => {
             >
                 Money Allocation
             </p>
-
             <RadialBarChart
                 startAngle={90}
                 endAngle={450}
@@ -77,37 +76,18 @@ const ChartRadianBar = () => {
                 innerRadius="10%"
                 outerRadius="80%"
                 barSize={10} data={data}
-
-
-
-
-
-
             >
                 <RadialBar
                     minAngle={15}
                     background
                     clockWise
                     dataKey="uv"
-
                 />
                 <Legend
                     iconType='circle' width={"50%"} iconSize={24} layout="horizontal" verticalAlign='middle' wrapperStyle={style} formatter={CustomizedLegend}
-
-
-
-
                 />
-
-
-
-
             </RadialBarChart>
-
         </StyledRadianChart>
-
-
-
 
     );
 }

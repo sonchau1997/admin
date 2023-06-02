@@ -82,7 +82,7 @@ const ProductManagament = () => {
 
     const onFinish = (product) => {
         const newProduct = [...productsStore.listProduct, {
-            id: Math.floor(Math.random() * 100) + 1,
+            id: Math.floor(Math.random() * 1000) + 1,
             title: product.title,
             description: product.description,
             price: product.price,
@@ -101,8 +101,6 @@ const ProductManagament = () => {
             ]
         }];
         dispatch.products.setListProduct(newProduct);
-        console.log(newProduct)
-
     }
     const onDeleteProduct = (record) => {
         Modal.confirm({
@@ -205,7 +203,7 @@ const ProductManagament = () => {
                     value={editingProduct?.title}
                     onChange={(e) => {
                         setEditingProduct((pre) => {
-                            return { ...pre, name: e.target.value };
+                            return { ...pre, title: e.target.value };
                         });
                     }}
                 />
@@ -213,7 +211,7 @@ const ProductManagament = () => {
                     value={editingProduct?.description}
                     onChange={(e) => {
                         setEditingProduct((pre) => {
-                            return { ...pre, age: e.target.value };
+                            return { ...pre, description: e.target.value };
                         });
                     }}
                 />
@@ -221,7 +219,7 @@ const ProductManagament = () => {
                     value={editingProduct?.price}
                     onChange={(e) => {
                         setEditingProduct((pre) => {
-                            return { ...pre, address: e.target.value };
+                            return { ...pre, price: e.target.value };
                         });
                     }}
                 />
