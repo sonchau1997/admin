@@ -3,6 +3,13 @@ import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import PrimaryLayout from 'components/Layout';
+import styled from 'styled-components';
+const StyledProduct = styled.div`
+    img{
+        height: 100px;
+        width: 100px;
+    }
+`
 
 const ProductManagament = () => {
     <PrimaryLayout></PrimaryLayout>
@@ -23,11 +30,16 @@ const ProductManagament = () => {
             title: 'Price',
             dataIndex: 'price',
             key: 'price',
+            render: (text) => <p Style="color:blue;">{text}$</p>
         },
         {
-            title: 'Thumbnail',
+            title: 'Image',
             key: 'thumbnail',
             dataIndex: 'thumbnail',
+            render: (text) => <StyledProduct>
+                <img src={text} alt="img" />
+
+            </StyledProduct>
 
         },
         {
@@ -71,17 +83,30 @@ const ProductManagament = () => {
     const onFinish = (product) => {
         const newProduct = [...productsStore.listProduct, {
             id: Math.floor(Math.random() * 100) + 1,
-            name: product.title,
-            age: product.description,
-            address: product.price,
-            thumbnail: product.thumbnail,
+            title: product.title,
+            description: product.description,
+            price: product.price,
+            discountPercentage: 12.96,
+            rating: 4.69,
+            stock: 94,
+            brand: "Apple",
+            category: "smartphones",
+            thumbnail: "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
+            images: [
+                "https://i.dummyjson.com/data/products/1/1.jpg",
+                "https://i.dummyjson.com/data/products/1/2.jpg",
+                "https://i.dummyjson.com/data/products/1/3.jpg",
+                "https://i.dummyjson.com/data/products/1/4.jpg",
+                "https://i.dummyjson.com/data/products/1/thumbnail.jpg"
+            ]
         }];
-        dispatch.products.setListProudct(newProduct);
+        dispatch.products.setListProduct(newProduct);
+        console.log(newProduct)
 
     }
     const onDeleteProduct = (record) => {
         Modal.confirm({
-            title: "Are you sure you want to delete this procut record?",
+            title: "Are you sure you want to delete this product record?",
             okText: "Yes",
             okType: "danger",
             onOk: () => {
@@ -134,7 +159,7 @@ const ProductManagament = () => {
                         <Input />
                     </Form.Item>
                     <Form.Item
-                        name="Price"
+                        name="price"
                         label="Price"
                         rules={[
                             {

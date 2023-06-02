@@ -1,3 +1,4 @@
 import ChartLine from "./ChartLine";
 import ChartRadianBar from "./ChartRadianBar";
-export  {ChartLine,ChartRadianBar};
+import ChartBar from "./ChartBar";
+export  {ChartLine,ChartRadianBar,ChartBar};

@@ -1,5 +1,10 @@
 import React from "react";
 import { RadialBarChart, RadialBar, Legend } from "recharts";
+import styled from "styled-components";
+const StyledRadianChart = styled.div`
+display: flex;
+flex-direction: column;
+`
 const data = [
     {
         name: "Bank",
@@ -32,9 +37,10 @@ const data = [
 ];
 
 const style = {
-    top: 0,
-    left: 350,
-    lineHeight: "24px"
+    top: '100%',
+    left: '50%',
+    transform: 'translate(-50%, -100%)',
+    lineHeight: '24px',
 };
 const CustomizedLegend = (value, entry) => {
     return (
@@ -46,12 +52,12 @@ const CustomizedLegend = (value, entry) => {
         </>
     );
 };
-  
+
 const ChartRadianBar = () => {
 
     return (
 
-        <div>
+        <StyledRadianChart>
             <p
                 style={{
                     color: "#4A4A65",
@@ -61,15 +67,22 @@ const ChartRadianBar = () => {
             >
                 Money Allocation
             </p>
+
             <RadialBarChart
-                width={500}
-                height={300}
-                cx={150}
-                cy={150}
-                innerRadius={20}
-                outerRadius={100}
-                barSize={10}
-                data={data}
+                startAngle={90}
+                endAngle={450}
+                width={537}
+                height={541}
+                cx="50%" cy="50%"
+                innerRadius="10%"
+                outerRadius="80%"
+                barSize={10} data={data}
+
+
+
+
+
+
             >
                 <RadialBar
                     minAngle={15}
@@ -79,26 +92,19 @@ const ChartRadianBar = () => {
 
                 />
                 <Legend
-                iconType="cicle"
-                iconSize={10}
-                width={120}
-                height={140}
-                layout="horizontal"
-                verticalAlign="middle"
-                wrapperStyle={style}
-                formatter={CustomizedLegend}
+                    iconType='circle' width={"50%"} iconSize={24} layout="horizontal" verticalAlign='middle' wrapperStyle={style} formatter={CustomizedLegend}
 
-               
-              
-              
-            />
-           
-          
+
+
+
+                />
+
+
 
 
             </RadialBarChart>
 
-        </div>
+        </StyledRadianChart>
 
 
 
