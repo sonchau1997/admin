@@ -257,7 +257,7 @@ const UserManagament = () => {
 
 
 
-            {console.log(usersStore.listUser)};
+        
 
 
 
