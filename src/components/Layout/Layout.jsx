@@ -1,4 +1,4 @@
-import { PieChartOutlined, UserOutlined,DesktopOutlined,ShoppingCartOutlined,GiftOutlined,UserSwitchOutlined} from '@ant-design/icons';
+import { PieChartOutlined, UserOutlined,DesktopOutlined,ShoppingCartOutlined,GiftOutlined,UserSwitchOutlined,HomeOutlined} from '@ant-design/icons';
 import {  Layout, Menu, theme } from 'antd';
 import { NavLink, Outlet } from "react-router-dom";
 import { useState } from 'react';
@@ -17,8 +17,9 @@ const items = [
   getItem('Product', '2', <NavLink to="/product"><DesktopOutlined /></NavLink>),
   getItem('User', '3', <NavLink to="/user"><UserSwitchOutlined /></NavLink>),
   getItem('Customer', '4', <NavLink to="/customer"><UserOutlined/></NavLink>),
-  getItem('Order', '5', <NavLink to="/other"><ShoppingCartOutlined /></NavLink>),
-  getItem('Coupon', '6',<NavLink to="/coupon"><GiftOutlined /></NavLink> )
+  getItem('Motel','5',<NavLink to="/motel"><HomeOutlined /></NavLink>)
+  //getItem('Order', '5', <NavLink to="/other"><ShoppingCartOutlined /></NavLink>),
+ // getItem('Coupon', '6',<NavLink to="/coupon"><GiftOutlined /></NavLink> )
 ];
 const PrimaryLayout = ({children,title}) => {
   const [collapsed, setCollapsed] = useState(false);
