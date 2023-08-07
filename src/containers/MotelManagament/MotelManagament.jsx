@@ -1,5 +1,5 @@
 import { Space, Table, Tag, Button, Modal, Form, Input } from 'antd';
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { EditOutlined, DeleteOutlined,DollarOutlined } from '@ant-design/icons';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import PrimaryLayout from 'components/Layout';
@@ -8,40 +8,67 @@ const MotelManagament = () => {
     <PrimaryLayout></PrimaryLayout>
     const columns = [
         {
-            title: 'Name',
+            title: 'Tên phòng',
             dataIndex: 'name',
             key: 'name',
             render: (text) => <a href='/motel'>{text}</a>,
         },
         {
-            title: 'Age',
-            dataIndex: 'age',
-            key: 'age',
+            title: 'Ngày vào',
+            dataIndex: 'dayIn',
+            key: 'dayIn',
         },
         {
-            title: 'Address',
-            dataIndex: 'address',
-            key: 'address',
+            title: 'Tiền cọc',
+            dataIndex: 'deposit',
+            key: 'deposit',
         },
         {
-            title: 'Tags',
-            key: 'tags',
-            dataIndex: 'tags',
-            render: (_, { tags }) => (
-                <>
-                    {tags.map((tag) => {
-                        let color = tag.length > 5 ? 'geekblue' : 'green';
-                        if (tag === 'loser') {
-                            color = 'volcano';
-                        }
-                        return (
-                            <Tag color={color} key={tag}>
-                                {tag.toUpperCase()}
-                            </Tag>
-                        );
-                    })}
-                </>
-            ),
+            title: 'Chỉ số điện mới',
+            dataIndex: 'csdm',
+            key: 'csdm',
+        },
+        {
+            title: 'Chỉ số điện cũ',
+            key: 'csdc',
+            dataIndex: 'csdc',
+           
+        },
+        {
+            title: 'Giá điện',
+            key: 'priceE',
+            dataIndex: 'priceE',
+           
+        },
+        {
+            title: 'Chỉ số nước mới',
+            key: 'csnm',
+            dataIndex: 'csnm',
+           
+        },
+        {
+            title: 'Chỉ số nước cũ',
+            key: 'csnc',
+            dataIndex: 'csnc',
+           
+        },
+        {
+            title: 'Giá nước',
+            key: 'priceW',
+            dataIndex: 'priceW',
+           
+        },
+        {
+            title: 'Tiền rác',
+            key: 'junk',
+            dataIndex: 'junk',
+           
+        },
+        {
+            title: 'Tổng tiền',
+            key: 'total',
+            dataIndex: 'total',
+           
         },
         {
             title: 'Action',
@@ -58,6 +85,7 @@ const MotelManagament = () => {
                             onDeletemotel(record);
                         }}
                     />
+                    <DollarOutlined />
                 </Space>
             ),
         },
@@ -81,9 +109,19 @@ const MotelManagament = () => {
         const newmotel =[...motelsStore.listmotel, {
             key: Math.floor(Math.random() * 100) + 1,
             name: motel.name,
-            age: motel.age,
-            address: motel.address,
-            tags: ['nice', 'developer'],
+            dayIn: motel.dayIn,
+            deposit:motel.deposit,
+            csdm:motel.csdm,
+            csdc: parseFloat(motel.csdc),
+            csnm:parseFloat(motel.csdm),
+            csnc:parseFloat(motel.csnc),
+            junk:parseFloat(motel.junk),
+            priceE:parseFloat(motel.priceE),
+            priceW:parseFloat(motel.priceW),
+            total:(parseFloat(motel.csdm)-parseFloat(motel.csdc))*parseFloat(motel.priceE)+(parseFloat(motel.csnm)-parseFloat(motel.csnc))*parseFloat(motel.priceW)+parseFloat(motel.junk)+1000,
+           
+          
+            
         }];
         dispatch.motels.setListmotel(newmotel);
        
@@ -165,7 +203,7 @@ const MotelManagament = () => {
                 <Form form={form} name="validateOnly" layout="vertical" autoComplete="off" onFinish={onFinish}  >
                     <Form.Item
                         name="name"
-                        label="Name"
+                        label="Tên phòng"
                         rules={[
                             {
                                 required: true,
@@ -175,8 +213,8 @@ const MotelManagament = () => {
                         <Input />
                     </Form.Item>
                     <Form.Item
-                        name="age"
-                        label="Age"
+                        name="dayIn"
+                        label="Ngày vào"
                         rules={[
                             {
                                 required: true,
@@ -186,8 +224,8 @@ const MotelManagament = () => {
                         <Input />
                     </Form.Item>
                     <Form.Item
-                        name="address"
-                        label="Address"
+                        name="deposit"
+                        label="Tiền cọc"
                         rules={[
                             {
                                 required: true,
@@ -196,6 +234,94 @@ const MotelManagament = () => {
                     >
                         <Input />
                     </Form.Item>
+                    <Form.Item
+                        name="csdm"
+                        label="Chỉ số điện mới"
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
+                    >
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                        name="csdc"
+                        label="Chỉ số điện cũ"
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
+                    >
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                        name="priceE"
+                        label="Giá Điện"
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
+                    >
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                        name="csnm"
+                        label="Chỉ số nước mới"
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
+                    >
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                        name="csnc"
+                        label="Chỉ số nước cũ"
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
+                    >
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                        name="priceW"
+                        label="Giá nước"
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
+                    >
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                        name="junk"
+                        label="Tiền rác"
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
+                    >
+                        <Input />
+                    </Form.Item>
+                    {/* <Form.Item
+                        name="total"
+                        label="Tổng tiền"
+                        rules={[
+                            {
+                                required: true,
+                            },
+                        ]}
+                    >
+                        <Input />
+                    </Form.Item> */}
                     <Form.Item>
                         <Space>
                             <Button onClick={handleOk} type="primary" htmlType="submit">

@@ -1,25 +1,17 @@
 const data = [
     {
         key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-        tags: ['nice', 'developer'],
-    },
-    {
-        key: '2',
-        name: 'Jim Green',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-        tags: ['loser'],
-    },
-    {
-        key: '3',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sydney No. 1 Lake Park',
-        tags: ['cool', 'teacher'],
-    },
+        name: 'Phòng 1',
+        dayIn:'20/3/2023',
+        csdm: 32,
+        csdc:20,
+        csnm:10,
+        csnc:5,
+        junk:20,
+        total:1000
+      
+    }
+    
 ];
 export const motels = {
     state: {
